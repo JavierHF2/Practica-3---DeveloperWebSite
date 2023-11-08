@@ -8,6 +8,11 @@
 
 html {
     font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 body {
@@ -15,9 +20,20 @@ body {
     font-family: 'Krub', sans-serif;
 }
 
-.titulo {
-    text-align: center;
+h1 {
     font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1, h2, h3 {
+    text-align: center;
 }
 
 .titulo span {
@@ -25,7 +41,7 @@ body {
 }
 
 .contenedor {
-    width: 120rem;
+    max-width: 120rem;
     margin: 0 auto;
 }
 
@@ -39,6 +55,7 @@ body {
     justify-content: space-between;
     font-weight: bold;
     font-size: 2rem;
+    align-items: center;
 }
 
 .navegacion-principal a {
@@ -58,6 +75,51 @@ body {
     }
 }
 
+.hero {
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    position: relative; /*El padre debe ser absoulte*/
+}
 
+.contenido-hero {
+    position: absolute; /*El hijo debe ser absoulte*/
+    background-color: rgba(0,0,0,.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.contenido-hero h2, .contenido-hero p {
+    color: var(--blanco);
+}
 
+.ubicacion {
+    display: flex;
+    align-items: flex-end;
+}
+
+.boton {
+    background-color: var(--secundario);
+    text-decoration: none;
+    padding: 1rem 3rem;
+    border-radius: .5rem;
+    color: var(--blanco);
+    margin-top: 3rem;
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 90%;
+}
+
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    }
+
+}
