@@ -1,3 +1,4 @@
+/* Variables */
 :root {
     --blanco: #FFFFFF;
     --oscuro: #212121;
@@ -7,10 +8,18 @@
     --grisClaro: #dfe9f3;
 }
 
+/* Globales */
+
 html {
     font-size: 62.5%;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Hack para el manejo de box model */
     background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100%);
+    scroll-snap-type: y mandatory;
+}
+
+.titulo, .servicios-heading, .contacto-heading {
+    scroll-snap-align: start; /* Punto en el contenedor de desplazamiento al que debe ajustarse el contenido*/
+    scroll-snap-stop: always; /* Controla si el desplazamiento debe detenerse siempre en los puntos de ajuste */
 }
 
 *, *:before, *:after {
@@ -63,7 +72,7 @@ h1, h2, h3 {
 .navegacion-principal {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* Se utiliza en filas */
     font-weight: bold;
     font-size: 2rem;
     align-items: center;
@@ -87,11 +96,11 @@ h1, h2, h3 {
 }
 
 .hero {
-    background-image: url(../img/hero.jpg);
-    background-repeat: no-repeat;
+    background-image: url(../img/hero.jpg); /* "../" es para regresar a un nivel de directorio, la carpeta img está afuera de CSS */
+    background-repeat: no-repeat; /* Evitar que la imagen se repita si se hace zoom out*/
     background-size: cover; /* Cubrir la imagen con todo el tamaño de la pantalla */
     height: 450px;
-    position: relative; /*El padre debe ser relative*/
+    position: relative; /* El padre debe ser relative */
     margin-bottom: 2rem; /* Margen inferior para separar el contenido */
 }
 
@@ -102,7 +111,7 @@ h1, h2, h3 {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Se utiliza en columnas */
     justify-content: center;
 }
 
@@ -116,17 +125,17 @@ h1, h2, h3 {
 }
 
 .boton {
-    background-color: var(--secundario);
-    text-decoration: none;
-    padding: 1rem 3rem;
-    border-radius: .5rem;
+    background-color: var(--secundario); /* Color del fondo del botón*/
+    text-decoration: none; /* Quitar subrayado */
+    padding: 1rem 3rem; /* Espacio interior */
+    border-radius: .5rem; /* Espacio exterior */
     color: var(--blanco);
     margin-top: 3rem;
-    font-weight: bold;
+    font-weight: bold; /* Negritas */
     font-size: 2rem;
-    text-transform: uppercase;
+    text-transform: uppercase; /* Mayúsculas */
     text-align: center;
-    width: 90%;
+    width: 90%; /* Ancho del botón que abarque el 90% si la pantalla es pequeña */
 }
 
 @media (min-width: 768px) {
@@ -142,14 +151,14 @@ h1, h2, h3 {
     .servicios  {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 1fr 1fr 1fr */
-        column-gap: 1rem; /* distancia entre columnas */
+        column-gap: 1rem; /* Distancia entre columnas */
     }
 }
 
 .servicio {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
 }
 
 .servicio h3 {
@@ -172,3 +181,122 @@ h1, h2, h3 {
     align-items: center;
 }
 
+/* Contacto */
+.formulario {
+    background-color: var(--gris);
+    width: min(60rem, 100%); /* Ahorra media querys.*/
+
+    margin: 0 auto; /* Usarlo si el padre no es un display flex*/
+
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    color: var(--primario);
+}
+
+.contenedor-campos {
+
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block; /* Cada label toma todo el espacio disponible y separado del input */
+}
+
+.input-text { /* ??? */
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+}
+
+.campo textarea {
+    height: 20rem;
+}
+
+/* Botón */
+.boton {
+    background-color: var(--secundario); /* Color de fondo del botón */
+    color: var(--blanco); /* Color del texto */
+    padding: 1rem 3rem; /* Espacio interior */
+    margin-top: 3rem; /* Separación superior*/
+    font-size: 2rem; /* Tamaño de la letra */
+    text-decoration: none; /* Quitar el subrayado */
+    text-transform: uppercase; /* Convertir texto en mayúsculas */
+    font-weight: bold; /* Texto en negritas */
+    border-radius: .5rem; /* Esquinas redondeadas */
+    width: 90%; ; /* Ancho del botón, que abarque el 90% posible si se encuentra en una pantalla pequeña */
+    text-align: center; /* Centrar el texto del botón */
+    border: none;  /* Esto afecta únicamente al botón de la etiqueta "input", si esta propiedad no existe en el enlace "a" , simplemente lo ignora */
+}
+
+@media (min-width: 768px) {
+    .boton {
+    width: auto;
+    }
+}
+
+
+.boton:hover {
+    cursor: pointer;
+}
+
+/* Utilidades */
+
+.w-sm-100 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .w-sm-100{
+    width: auto;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.alinear-derecha {
+    justify-content: flex-end;
+}
+
+/* Navegación principal */
+.nav-bg {
+    background-color: var(--secundario);
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 1rem;
+        grid-template-rows: auto auto 20rem; /* Darle el espacio de cada fila*/
+    }
+
+    .campo:nth-child(3), .campo:nth-child(4) {
+        grid-column: 1/3; /* Para posicionar el elemento, "que vaya de la columna 1 a la 3*/
+    }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+}
